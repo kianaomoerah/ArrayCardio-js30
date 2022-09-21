@@ -30,25 +30,116 @@
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
 
+    const oldInventors = inventors.filter( (inventor) => {
+      return inventor.year >= 1500 && inventor.year <1600
+    })
+
+    console.log(oldInventors);
+
     // Array.prototype.map()
     // 2. Give us an array of the inventors first and last names
 
+    const names = inventors.map((inventorObject) => {
+        return`${inventorObject.first} ${inventorObject.last}`
+    })
+
+    console.log(names)
+
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
+// a and b rep first and 2nd person
+    // const birthOrder = inventors.sort((a, b)=>{
+    //   if (a.year > b.year) {
+    //     return 1;
+    //   } else {
+    //     return -1;
+    //   }
+    // });
+
+    // console.log(birthOrder);
+
+    const birthOrderAgain = inventors.sort((a,b) => a.year > b.year ? 1 : -1 )
+
+    console.log(birthOrderAgain);
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
 
+    const life = inventors.map((inventor) => {
+        return inventor.passed - inventor.year
+    }) 
+
+    console.log(life);
+
+    const lifeSum = life.reduce((accumulator, currentValue) => {
+        return accumulator + currentValue;
+    }, 0)
+
+    console.log(lifeSum)
+
     // 5. Sort the inventors by years lived
+
+    // WES 
+     
+    const oldest = inventors.sort((a, b) => {
+
+      const lastPerson = a.passed - a.year;
+      const nextPerson = b.passed - b.year;
+
+      return lastPerson > nextPerson ? -1 : 1;
+
+      // if(lastPerson > nextPerson) {
+      //   return -1;
+      // } else {
+      //   return 1;
+      // }
+
+    });
+
+    console.log(oldest);
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
 
+      // open the link and inspect the page to see what contains the names of bouvelards 
+
+      // const category = document.querySelector('.mw-category');
+
+      // // find links within this category - this step examples that you are able to use query selector on any DOM element, this step could have been chained on to the top step
+      // const links = Array.from(category.querySelectorAll('a'));
+
+      //   // to convert the above NodeList to an array you can
+      //     // 1. wrap the entire right side of the expression in Array.from()
+      //     // 2. or wrap it in sqaure brackets and use the spread operator to spread everything into the arrays
+
+
+      // const de = links.map(link => link.textContent).filter((streetName) => streetName.includes('de'));
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
 
+    const alpha = people.sort((lastOne, nextOne) => {
+
+      // destructure the array given by the split
+      const [aLast, aFirst] = lastOne.split(', ')
+      const [bLast, bFirst] = nextOne.split(', ')
+      
+      return aLast > bLast ? 1 : -1
+    })
+
+    console.log(alpha)
+
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+
+    const transportation = data.reduce((obj, item)=> {
+        if (!obj[item]) {
+          obj[item] = 0;
+        }
+        obj[item]++;
+        return obj;
+    }, {})
+
+    console.log(transportation);
 
