@@ -47,7 +47,8 @@
 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
-// a and b rep first and 2nd person
+
+  // a and b rep first and 2nd person
     // const birthOrder = inventors.sort((a, b)=>{
     //   if (a.year > b.year) {
     //     return 1;
